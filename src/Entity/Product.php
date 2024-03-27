@@ -33,7 +33,7 @@ class Product
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\ManyToOne]
-    private ?oeuvre $oeuvres = null;
+    private ?Oeuvre $oeuvres = null;
 
     public function getId(): ?int
     {

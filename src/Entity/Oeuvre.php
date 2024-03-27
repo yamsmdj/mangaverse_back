@@ -4,6 +4,8 @@ namespace App\Entity;
 
 
 use App\Repository\OeuvreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -52,6 +54,14 @@ class Oeuvre
 
     #[ORM\ManyToOne(inversedBy: 'oeuvres')]
     private ?Type $type = null;
+
+    #[ORM\ManyToMany(targetEntity: Genre::class, mappedBy: 'oeuvres')]
+    private Collection $genres;
+
+    public function __construct()
+    {
+        $this->genres = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -175,6 +185,33 @@ class Oeuvre
     public function setType(?Type $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Genre>
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre): static
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres->add($genre);
+            $genre->addOeuvre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): static
+    {
+        if ($this->genres->removeElement($genre)) {
+            $genre->removeOeuvre($this);
+        }
 
         return $this;
     }

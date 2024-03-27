@@ -20,6 +20,7 @@ class Categorie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getOeuvre', 'getProduct'])]
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: oeuvre::class, mappedBy: 'categorie')]

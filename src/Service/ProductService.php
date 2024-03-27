@@ -61,7 +61,7 @@ class ProductService
                 ->setPicture($product->getPicture())
                 ->setQuantiter($product->getQuantiter())
                 ->setCreatedAt($product->getCreatedAt());
-               
+
 
             $this->em->flush();
             return "Le produit avec l'ID {$id} a été mis a jour avec succès!";
@@ -77,9 +77,9 @@ class ProductService
             $existingProduct->setName($product->getName() ?? $existingProduct->getName());
             $existingProduct->setPrix($product->getPrix() ?? $existingProduct->getPrix());
             $existingProduct->setPicture($product->getPicture() ?? $existingProduct->getPicture());
-            $existingProduct->setQuantity($product->getQuantiter() ?? $existingProduct->getQuantiter());
+            $existingProduct->setQuantiter($product->getQuantiter() ?? $existingProduct->getQuantiter());
             $existingProduct->setCreatedAt($product->getCreatedAt() ?? $existingProduct->getCreatedAt());
-            
+
 
             $this->em->flush();
 
@@ -88,5 +88,4 @@ class ProductService
             return "Le produit avec l'ID {$id} n'existe pas.";
         }
     }
-
 }

@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ProductController extends AbstractController
@@ -34,13 +35,13 @@ class ProductController extends AbstractController
     #[Route('api/products', methods: ['GET'])]
     public function getAll(): Response
     {
-        return new Response($this->serializer->serialize($this->productsService->getAll(), 'json'));
+        return new Response($this->serializer->serialize($this->productsService->getAll(), 'json', ['groups' => 'getProduct']));
     }
 
     #[Route('api/products/{id}', methods: ['GET'])]
     public function get(int $id): Response
     {
-        return new Response($this->serializer->serialize($this->productsService->get($id), 'json'));
+        return new Response($this->serializer->serialize($this->productsService->get($id),'json', ['groups' => 'getProduct']));
     }
 
     #[Route('api/products/{id}', methods: ['PUT'])]

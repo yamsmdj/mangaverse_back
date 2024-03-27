@@ -24,9 +24,13 @@ class Type
     #[ORM\OneToMany(targetEntity: Oeuvre::class, mappedBy: 'type')]
     private Collection $oeuvres;
 
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'type')]
+    private Collection $Types;
+
     public function __construct()
     {
         $this->oeuvres = new ArrayCollection();
+        $this->Types = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,6 +74,36 @@ class Type
             // set the owning side to null (unless already changed)
             if ($oeuvre->getType() === $this) {
                 $oeuvre->setType(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getTypes(): Collection
+    {
+        return $this->Types;
+    }
+
+    public function addType(Product $type): static
+    {
+        if (!$this->Types->contains($type)) {
+            $this->Types->add($type);
+            $type->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeType(Product $type): static
+    {
+        if ($this->Types->removeElement($type)) {
+            // set the owning side to null (unless already changed)
+            if ($type->getType() === $this) {
+                $type->setType(null);
             }
         }
 

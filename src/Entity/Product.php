@@ -35,6 +35,12 @@ class Product
     #[ORM\ManyToOne]
     private ?Oeuvre $oeuvres = null;
 
+    #[ORM\ManyToOne(inversedBy: 'categories')]
+    private ?Categorie $categorie = null;
+
+    #[ORM\ManyToOne(inversedBy: 'Types')]
+    private ?Type $type = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,6 +114,30 @@ class Product
     public function setOeuvres(?oeuvre $oeuvres): static
     {
         $this->oeuvres = $oeuvres;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): static
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

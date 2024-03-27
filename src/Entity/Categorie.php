@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 // #[ApiResource()]
-#[Groups(['getCategorie'])]
+#[Groups(['getCategorie'])] 
 class Categorie
 {
     #[ORM\Id]

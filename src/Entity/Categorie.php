@@ -25,9 +25,13 @@ class Categorie
     #[ORM\OneToMany(targetEntity: oeuvre::class, mappedBy: 'categorie')]
     private Collection $oeuvres;
 
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'categorie')]
+    private Collection $categories;
+
     public function __construct()
     {
         $this->oeuvres = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -71,6 +75,36 @@ class Categorie
             // set the owning side to null (unless already changed)
             if ($oeuvre->getCategorie() === $this) {
                 $oeuvre->setCategorie(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Product $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+            $category->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Product $category): static
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getCategorie() === $this) {
+                $category->setCategorie(null);
             }
         }
 

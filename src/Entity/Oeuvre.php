@@ -4,6 +4,8 @@ namespace App\Entity;
 
 
 use App\Repository\OeuvreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -30,7 +32,7 @@ class Oeuvre
     #[ORM\Column(nullable: true)]
     private ?float $rating = null;
 
-    #[ORM\Column(length: 255, nullable: true, columnDefinition: "ENUM('3', '7', '12', '16', '18')")]
+    #[ORM\Column(length: 255)]
     private ?string $pegi = null;
 
     #[ORM\Column(type: "datetime_immutable")]
@@ -49,6 +51,17 @@ class Oeuvre
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
+
+    #[ORM\ManyToOne(inversedBy: 'oeuvres')]
+    private ?Type $type = null;
+
+    #[ORM\ManyToMany(targetEntity: Genre::class, mappedBy: 'oeuvres')]
+    private Collection $genres;
+
+    public function __construct()
+    {
+        $this->genres = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -160,6 +173,45 @@ class Oeuvre
     public function setPicture(?string $picture): static
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Genre>
+     */
+    public function getGenres(): Collection
+    {
+        return $this->genres;
+    }
+
+    public function addGenre(Genre $genre): static
+    {
+        if (!$this->genres->contains($genre)) {
+            $this->genres->add($genre);
+            $genre->addOeuvre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGenre(Genre $genre): static
+    {
+        if ($this->genres->removeElement($genre)) {
+            $genre->removeOeuvre($this);
+        }
 
         return $this;
     }

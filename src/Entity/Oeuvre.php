@@ -31,6 +31,7 @@ class Oeuvre
     private ?string $text = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(["getRating"])]
     private ?float $rating = null;
 
     #[ORM\Column(length: 255)]

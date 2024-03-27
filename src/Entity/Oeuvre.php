@@ -30,7 +30,7 @@ class Oeuvre
     #[ORM\Column(nullable: true)]
     private ?float $rating = null;
 
-    #[ORM\Column(length: 255, nullable: true, columnDefinition: "ENUM('3', '7', '12', '16', '18')")]
+    #[ORM\Column(length: 255)]
     private ?string $pegi = null;
 
     #[ORM\Column(type: "datetime_immutable")]
@@ -49,6 +49,9 @@ class Oeuvre
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
+
+    #[ORM\ManyToOne(inversedBy: 'oeuvres')]
+    private ?Type $type = null;
 
 
     public function getId(): ?int
@@ -160,6 +163,18 @@ class Oeuvre
     public function setPicture(?string $picture): static
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

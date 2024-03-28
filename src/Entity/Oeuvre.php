@@ -31,7 +31,7 @@ class Oeuvre
     private ?string $text = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(["getRating"])]
+    #[Groups(["getProduct"])]
     private ?float $rating = null;
 
     #[ORM\Column(length: 255)]

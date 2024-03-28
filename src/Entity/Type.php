@@ -18,7 +18,7 @@ class Type
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['getOeuvre', 'getProduct'])]
+    #[Groups(["getProduct", "getOeuvre"])]
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: Oeuvre::class, mappedBy: 'type')]

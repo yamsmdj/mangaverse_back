@@ -28,6 +28,7 @@ class Oeuvre
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups("getProduct")]
     private ?string $text = null;
 
     #[ORM\Column(nullable: true)]
@@ -58,6 +59,7 @@ class Oeuvre
     private ?Type $type = null;
 
     #[ORM\ManyToMany(targetEntity: Genre::class, mappedBy: 'oeuvres')]
+    #[Groups("getProduct")]
     private Collection $genres;
 
     public function __construct()

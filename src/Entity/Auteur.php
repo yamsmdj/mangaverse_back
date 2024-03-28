@@ -7,9 +7,11 @@ use App\Repository\AuteurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: AuteurRepository::class)]
-#[ApiResource()]
+// #[ApiResource()]
+
 class Auteur
 {
     #[ORM\Id]
@@ -18,6 +20,7 @@ class Auteur
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['getOeuvre'])]
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: Oeuvre::class, mappedBy: 'auteur')]

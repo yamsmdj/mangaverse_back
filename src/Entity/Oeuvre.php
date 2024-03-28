@@ -58,6 +58,7 @@ class Oeuvre
     private ?Type $type = null;
 
     #[ORM\ManyToMany(targetEntity: Genre::class, mappedBy: 'oeuvres')]
+    #[Groups("getProduct")]
     private Collection $genres;
 
     public function __construct()

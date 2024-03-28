@@ -28,6 +28,7 @@ class Oeuvre
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups("getProduct")]
     private ?string $text = null;
 
     #[ORM\Column(nullable: true)]

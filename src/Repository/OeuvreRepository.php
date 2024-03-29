@@ -32,8 +32,7 @@ class OeuvreRepository extends ServiceEntityRepository
     //            ->orderBy('o.id', 'ASC')
     //            ->setMaxResults(10)
     //            ->getQuery()
-    //            ->getResult()
-    //        ;
+    //            ->getResult();
     //    }
 
     //    public function findOneBySomeField($value): ?Oeuvre

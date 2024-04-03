@@ -26,7 +26,7 @@ class UserController extends AbstractController
     }
 
     #[Route("/", methods: ['POST'])]
-    #[IsGranted("ROLE_ADMIN", message: "Vous n'avez pas les droits necessaire pour crée un livre")]
+    // #[IsGranted("ROLE_ADMIN", message: "Vous n'avez pas les droits necessaire pour crée un livre")]
     public function create(Request $request): Response
     {
         $userData = $this->serializer->deserialize($request->getContent(), User::class, 'json');
@@ -34,7 +34,7 @@ class UserController extends AbstractController
         return new Response($this->serializer->serialize($createdUser, 'json'));
     }
 
-    #[Route('/', name:'user_ok',methods: ['GET'])]
+    #[Route('/', name: 'user_ok', methods: ['GET'])]
     public function getAll(): Response
     {
         return new Response($this->serializer->serialize($this->userService->getAll(), 'json'));

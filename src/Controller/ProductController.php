@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class ProductController extends AbstractController
 {
-    
+
     private SerializerInterface $serializer;
     private ProductService $productsService;
 
@@ -27,7 +27,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/api/products', methods: ['POST'])]
-    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour creer un livre")]
+    // #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour creer un livre")]
     public function create(#[MapRequestPayload()] Product $Product): Response
     {
         return new Response($this->serializer->serialize($this->productsService->create($Product), 'json'));
@@ -42,7 +42,7 @@ class ProductController extends AbstractController
     #[Route('api/products/{id}', methods: ['GET'])]
     public function get(int $id): Response
     {
-        return new Response($this->serializer->serialize($this->productsService->get($id),'json', ['groups' => 'getProduct']));
+        return new Response($this->serializer->serialize($this->productsService->get($id), 'json', ['groups' => 'getProduct']));
     }
 
     #[Route('api/products/{id}', methods: ['PUT'])]
@@ -54,7 +54,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('api/products/{id}', methods: ['PATCH'])]
-    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour modifer un livre")]
+    // #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour modifer un livre")]
     public function patch(int $id, #[MapRequestPayload] Product $product): Response
     {
         $message = $this->productsService->update($id, $product);
@@ -62,7 +62,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/api/products/{id}', methods: ['DELETE'])]
-    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour supprimer un livre")]
+    // #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour supprimer un livre")]
     public function delete(int $id): Response
     {
         $message = $this->productsService->delete($id);

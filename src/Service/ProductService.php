@@ -77,7 +77,7 @@ class ProductService
             $existingProduct->setName($product->getName() ?? $existingProduct->getName());
             $existingProduct->setPrix($product->getPrix() ?? $existingProduct->getPrix());
             $existingProduct->setPicture($product->getPicture() ?? $existingProduct->getPicture());
-            $existingProduct->setQuantity($product->getQuantiter() ?? $existingProduct->getQuantiter());
+            $existingProduct->setQuantiter($product->getQuantiter() ?? $existingProduct->getQuantiter());
             $existingProduct->setCreatedAt($product->getCreatedAt() ?? $existingProduct->getCreatedAt());
             
 

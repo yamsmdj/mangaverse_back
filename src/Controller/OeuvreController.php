@@ -11,10 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/api/oeuvres')]
-
 class OeuvreController extends AbstractController
 {
 
@@ -29,7 +30,7 @@ class OeuvreController extends AbstractController
 
 
     #[Route('/', methods: ['POST'])]
-
+    #[IsGranted("ROLE_ADMIN", message: "Vous n'avez pas les droits necessaire pour crée un livre")]
     public function create(#[MapRequestPayload()] Oeuvre $oeuvre): Response
     {
         return new Response($this->serializer->serialize($this->oeuvreService->create($oeuvre), 'json'));
@@ -48,6 +49,7 @@ class OeuvreController extends AbstractController
     }
 
     #[Route('/{id}', methods: ['PUT'])]
+    #[IsGranted("ROLE_ADMIN", message: "Vous n'avez pas les droits necessaire pour modifer un livre")]
     public function put(int $id, #[MapRequestPayload] Oeuvre $oeuvre): Response
     {
         $message = $this->oeuvreService->updateAll($id, $oeuvre);
@@ -62,6 +64,7 @@ class OeuvreController extends AbstractController
     }
 
     #[Route('/{id}', methods: ['DELETE'])]
+    #[IsGranted("ROLE_ADMIN", message: "Vous n'avez pas les droits necessaire pour supprimer un livre")]
     public function delete(Oeuvre $oeuvre): Response
     {
         try {

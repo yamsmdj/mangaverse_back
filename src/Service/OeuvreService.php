@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Oeuvre;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class OeuvreService
 {

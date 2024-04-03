@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -26,7 +27,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/api/products', methods: ['POST'])]
-
+    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour creer un livre")]
     public function create(#[MapRequestPayload()] Product $Product): Response
     {
         return new Response($this->serializer->serialize($this->productsService->create($Product), 'json'));
@@ -45,6 +46,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('api/products/{id}', methods: ['PUT'])]
+    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour modifer un livre")]
     public function put(int $id, #[MapRequestPayload] Product $product): Response
     {
         $message = $this->productsService->updateAll($id, $product);
@@ -52,6 +54,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('api/products/{id}', methods: ['PATCH'])]
+    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour modifer un livre")]
     public function patch(int $id, #[MapRequestPayload] Product $product): Response
     {
         $message = $this->productsService->update($id, $product);
@@ -59,6 +62,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/api/products/{id}', methods: ['DELETE'])]
+    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour supprimer un livre")]
     public function delete(int $id): Response
     {
         $message = $this->productsService->delete($id);

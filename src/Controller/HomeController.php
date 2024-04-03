@@ -8,28 +8,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
 
-    private SerializerInterface $serializer;
-
-    public function __construct(SerializerInterface $serializer)
+    #[Route('/test', name: 'test')]
+    public function index(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): Response
     {
-        $this->serializer = $serializer;
+        $user = new User();
+        $user->setEmail('john@doe.fr')
+            ->setPassword($hasher->hashPassword($user, '0000'))
+            ->setRoles([]);
+        $em->persist($user);
+        $em->flush();
+        
+        return $this->render('home/index');
     }
-
-    // #[Route("/", name: "Home")]
-    // function index(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher, User $users)
-    // {
-    //     $user = new User();
-    //     $user->setEmail($users->getUserIdentifier())
-    //         ->setRoles([])
-    //         ->setPassword($hasher->hashPassword($user,$users->getPassword()));
-    //     $em->persist($user);
-    //     $em->flush();
-    //     return $user;
-    // }
 }

@@ -54,7 +54,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('api/products/{id}', methods: ['PATCH'])]
-    #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour modifer un livre")]
+    // #[IsGranted('ROLE_ADMIN', message: "Vous n'avez pas les droits necessaire pour modifer un livre")]
     public function patch(int $id, #[MapRequestPayload] Product $product): Response
     {
         $message = $this->productsService->update($id, $product);

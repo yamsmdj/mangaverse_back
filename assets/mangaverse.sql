@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 03 avr. 2024 à 15:51
+-- Généré le : mer. 03 avr. 2024 à 20:52
 -- Version du serveur : 8.2.0
 -- Version de PHP : 8.2.13
 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `auteur` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `auteur`
@@ -69,7 +69,12 @@ INSERT INTO `auteur` (`id`, `name`) VALUES
 (12, 'Masashi Kishimoto'),
 (13, 'Mokoto Yukimura'),
 (14, 'Tatsuki Fujimoto'),
-(15, 'Fukui Tukumi');
+(15, 'Fukui Tukumi'),
+(16, 'Kaneshiro Muneyuki'),
+(17, 'Furudate Haruichi'),
+(18, 'Akira Toriyama'),
+(19, 'ONE'),
+(20, 'Togashi Yoshihiro');
 
 -- --------------------------------------------------------
 
@@ -204,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `oeuvre` (
   KEY `IDX_35FE2EFE60BB6FE6` (`auteur_id`),
   KEY `IDX_35FE2EFEBCF5E72D` (`categorie_id`),
   KEY `IDX_35FE2EFEC54C8C93` (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `oeuvre`
@@ -225,7 +230,12 @@ INSERT INTO `oeuvre` (`id`, `auteur_id`, `categorie_id`, `name`, `text`, `rating
 (12, 12, 1, 'Naruto', 'Il y a de cela douze ans, Kyūbi, un démon ayant la forme d\'un renard à neuf queues, entreprit la destruction du village de Konoha, mais le quatrième Hokage neutralisa ce démon en le scellant dans le corps d\'un nouveau-né : Naruto Uzumaki. Le quatrième Hokage se sacrifia ainsi pour sauver le village de Konoha.\r\n\r\nL\'histoire commence pendant l\'adolescence de Naruto, vers ses douze ans. Orphelin, éternel cancre et grand farceur, il fait toutes les bêtises possibles pour se faire remarquer. Son rêve : devenir Hokage afin d\'être reconnu par les habitants de son village. En effet, le démon scellé en lui a attisé la crainte et le mépris des autres villageois, qui, avec le temps, ne font plus de différence entre le Kyūbi et Naruto. Malgré cela, Naruto s\'entraîne dur afin de devenir genin, le premier niveau chez les ninjas.', 8.7, '', '2024-03-26 16:18:06', '2024-03-26 16:18:06', 'narutoT1.jpg', 1),
 (13, 13, 1, 'Vinland Saga', 'Vinland Saga nous raconte l\'histoire d\'un jeune Viking, Thorfinn. Ce dernier fait partie de l\'équipage d\'un chef de guerre du nom d\'Askeladd, qui est l\'assassin du père de Thorfinn !\r\nEnchainant les combats et les missions dangereuses, Thorfinn s\'endurcit et gagne en maturité. Il a un objectif : venger son père de manière loyale...', 9.28, '', '2024-03-26 16:18:06', '2024-03-26 16:18:06', 'VinlandSagaT1.jpg', 2),
 (14, 14, 1, 'Chaisaw Man', 'Pour rembourser ses dettes, Denji, jeune homme dans la dèche la plus totale, est exploité en tant que Devil Hunter avec son chien-démon-tronçonneuse, \"Pochita\". Mais suite à une cruelle trahison, il voit enfin une possibilité de se tirer des bas-fonds où il croupit ! Devenu surpuissant après sa fusion avec Pochita, Denji est recruté par une organisation et part à la chasse aux démons...', 8.5, '', '2024-03-28 10:15:20', '2024-03-28 10:15:20', 'ChainsawManT1.jpg', 2),
-(15, 15, 1, 'Valkyrie Apocalypse', 'Cette fois, la patience des dieux est à bout. Entre guerres incessantes et pollution extrême, les humains n\'évoluent décidément pas et passent le plus clair de leur temps à semer le chaos sur terre. Les divinités décident donc à l\'unanimité d\'anéantir l\'humanité en déclenchant l\'apocalypse !\r\n\r\nSeules les valkyries, ces guerrières chargées de guider les âmes des morts vers le Valhalla, se rebellent contre ce jugement. Brunehilde, leur aînée, lance un défi aux créateurs du monde : que le sort des mortels soit soumis au Ragnarök, un affrontement ultime entre 13 divinités et 13 champions de l\'humanité ! Mais les plus célèbres héros de notre passé feront-ils le poids face à Zeus, Belzébuth ou Shiva ?', 8.6, '', '2024-03-28 10:15:20', '2024-03-28 10:15:20', 'ValkyrieApocalypseT1.jpg', 2);
+(15, 15, 1, 'Valkyrie Apocalypse', 'Cette fois, la patience des dieux est à bout. Entre guerres incessantes et pollution extrême, les humains n\'évoluent décidément pas et passent le plus clair de leur temps à semer le chaos sur terre. Les divinités décident donc à l\'unanimité d\'anéantir l\'humanité en déclenchant l\'apocalypse !\r\n\r\nSeules les valkyries, ces guerrières chargées de guider les âmes des morts vers le Valhalla, se rebellent contre ce jugement. Brunehilde, leur aînée, lance un défi aux créateurs du monde : que le sort des mortels soit soumis au Ragnarök, un affrontement ultime entre 13 divinités et 13 champions de l\'humanité ! Mais les plus célèbres héros de notre passé feront-ils le poids face à Zeus, Belzébuth ou Shiva ?', 8.6, '', '2024-03-28 10:15:20', '2024-03-28 10:15:20', 'ValkyrieApocalypseT1.jpg', 2),
+(16, 18, 1, 'Dragon Ball', 'Alors qu\'elle parcourt les routes de montagnes à moto, Bulma fait une bien étrange rencontre en la personne de Sangoku, un petit garçon étonnamment fort, résistant et possédant une queue, comme les singes. Il possède un trésor qu\'elle recherche, une boule de cristal, mais ne veut pas la lui céder, c\'est un cadeaux que lui a laissé son grand-père Sangohan. Ils trouvent finalement un compromis, et Sangoku part avec elle à la recherche des 7 boules de cristal dont on dit qu\'elles exaucent n\'importe quel souhait une fois réunis.', 9.15, '10', '2024-04-03 20:32:36', '2024-04-03 20:32:36', 'DragonBallT1.jpg', 1),
+(17, 15, 1, 'Haikyū!!', 'Shôyô Hinata a un talent inné pour le volley-ball malgré sa petite taille. Mais après une défaite contre l\'équipe du \"roi du terrain\", Tobio Kageyama, son club de volley-ball au collège perd tous ses membres. Il décide de renouer avec le volley-ball à son entrée au lycée, car cette défaite lui a laissé un goût amer et son but ultime est de surpasser Tobio. Sauf qu\'il se rend compte que celui-ci a rejoint le même lycée que lui, et qu\'il doit par conséquent jouer dans son équipe ! Et pour redorer le blason de l\'équipe de volley-ball du lycée Karasuno, considérée comme \"les champions déchus\", il va falloir que Shôyô et Tobio se reconnaissent comme coéquipiers et non comme rivaux ! Ce qui risque d\'être un peu compliqué...', 9.39, '12', '2024-04-03 20:32:36', '2024-04-03 20:32:36', 'HaikyuT1.jpg', 1),
+(18, 19, 1, 'One Punch Man', 'Lorsque le super-héros Saitama se présente à ses ennemis, ces derniers ne le prennent jamais au sérieux. Il faut dire qu\'entre sa carrure (plutôt banale) et son allure désinvolte, il n\'y a pas vraiment de quoi avoir peur... surtout pour un être surpuissant qui a déjà causé d\'impressionnants ravages. Toutefois, il faut toujours se méfier des apparences car Saitama possède une puissance colossale, qui lui permet de terrasser ses adversaires en un seul coup !\r\n\r\nCette puissance est dû à un entrainement très intensif (au point que Saitama en ait perdu ses cheveux) de 3 ans. Le problème, c\'est que depuis, il s\'ennuie. Personne n\'a encore pu rivaliser avec lui et il cherche désespérément celui qui pourra lui offrir un vrai combat', 8.87, '14', '2024-04-03 20:32:36', '2024-04-03 20:32:36', 'OnePunchManT1.jpg', 2),
+(19, 16, 1, 'Blue Lock', 'Coupe du monde 2018, l\'équipe de football du Japon est éliminée en huitièmes de finale... Ce nouvel échec incite l\'Union japonaise de football à fonder le \"Blue Lock\" : un centre de formation révolutionnaire rassemblant les 300 meilleurs attaquants lycéens du pays.\r\n\r\nL\'objectif du coach du Blue Lock, Jinpachi Ego, est clair : détecter l\'unique attaquant qui écrasera tous ses rivaux par son talent et son hyper-individualisme ! Pour Yoichi Isagi, joueur bouillonnant encore inconnu, il n\'y a pas d\'alternative... S\'il veut survivre au programme hautement sélectif qui l\'attend, il devra abandonner le jeu collectif et se transcender pour devenir l\'attaquant ultime !', 8.95, '12', '2024-04-03 20:40:06', '2024-04-03 20:40:06', 'BlueLockT1.jpg', 1),
+(20, 20, 1, 'Hunter X Hunter', 'Gon Freecs, 12 ans, vit sur une île reculée. Son père ayant disparu, il vit avec sa tante et sa grand-mère. Mais le jour où il apprend que son père, Jin Freecs, est un Hunter et qui plus est l\'un des meilleurs de son temps, il décide de se rendre au très réputé examen de Hunter pour décrocher le certificat de Hunter et ainsi pouvoir se mettre à la recherche de son père.\r\n\r\nCependant l\'examen qui a lieu chaque année est très difficile et dangereux, les participants peuvent y mourir à tout moment. On raconte même que sur dix mille candidats, un seul arrive jusqu\'à l\'examen, mais cela ne décourage pas le jeune héros qui est plus déterminé que jamais.\r\n\r\nDurant l\'examen il va rencontrer plusieurs personnes, amies comme ennemies dont : Kurapika dont le seul but est de devenir un Hunter pour venger son clan assassiné ; Leolio qui lui veut simplement de l\'argent mais au plus profond c\'est pour financer ses études de médecine et ainsi être assez riche pour ne jamais demander d\'argent à un patient qui n\'en a pas les moyens ; Kirua qui a le même âge que Gon, fils d\'une famille d\'assassins d\'élite très réputée, il s\'est enfui car il déteste qu\'on décide de sa vie à sa place, s\'il devient Hunter il fera enfermer sa famille et touchera les primes ; et enfin le très redoutable Hisoka dont le seul plaisir est de se battre contre des guerriers extrêmement forts, dans le cas contraire il massacre froidement ses ennemis.\r\n\r\nGon va devoir se frayer un chemin parmi tous ses concurrents mais son charisme, son courage et surtout son incroyable capacité à s\'attirer la sympathie des gens le tireront des mauvais pas bien des fois...', 9.12, '12', '2024-04-03 20:42:07', '2024-04-03 20:42:07', 'HunterXHunterT1.jpg', 1);
 
 -- --------------------------------------------------------
 

@@ -23,7 +23,7 @@ class Categorie
     #[Groups(["getProduct", "getOeuvre"])]
     private ?string $name = null;
 
-    #[ORM\OneToMany(targetEntity: oeuvre::class, mappedBy: 'categorie')]
+    #[ORM\OneToMany(targetEntity: Oeuvre::class, mappedBy: 'categorie')]
     private Collection $oeuvres;
 
     #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'categorie')]
